@@ -1,0 +1,27 @@
+
+  [
+    {
+      "nombre": "Danny",
+      "edad": 39,
+      "genero": "masculino"
+    },
+    {
+      "nombre": "Jose",
+      "edad": 23,
+      "genero": "masculino"
+    },
+    {
+      "nombre": "Jose",
+      "edad": 45,
+      "genero": "masculino"
+    },
+    {
+      "nombre": "Jose",
+      "edad": 25,
+      "genero": "masculino"
+    },
+    {
+      "nombre": "Jose",
+      "genero": "masculino"
+    }
+  ]
