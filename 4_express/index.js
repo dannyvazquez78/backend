@@ -52,7 +52,7 @@ server.patch("/koders/:nombre", async (req, res) => {
   // Cargar Koders
   const koders = await readKoders();
 
-  // TODO: Buscar y actualizar al Koder cuyo koder.nombre sea igual a nombre
+  // TO DO: Buscar y actualizar al Koder cuyo koder.nombre sea igual a nombre
   for (let i = 0; i < koders.length; i++) {
     const oldKoder = koders[i];
 
