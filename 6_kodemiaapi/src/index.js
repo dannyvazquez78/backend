@@ -4,7 +4,8 @@ require("dotenv").config(); // las variables del .env se agregan a process.env
 const express = require("express");
 const mongoose = require("mongoose");
 
-const Koder = require("./models/koder.model");
+const koderRouter = require("./routers/koder.router");
+const userRouter = require("./routers/user.router");
 
 // Inicializamos constantes con la configuracion
 const PORT = process.env.PORT;
@@ -18,54 +19,13 @@ const URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retry
 
 const app = express();
 
-function crearMiddlware() {
-  console.log("creando middleware");
-  return (req, res, next) => {
-    console.log("Middleware fabricado");
-    console.log("Method:", req.method);
-    console.log("URL:", req.originalUrl);
-
-    next();
-  };
-}
-
 app.use(express.json());
-app.use((req, res, next) => {
-  console.log("Hola desde este otro middleware");
+app.use("/koders", koderRouter);
+app.use("/users", userRouter);
 
-  next();
+app.get("/", async (req, res) => {
+  res.json({ hola: "mundo" });
 });
-app.use(crearMiddlware());
-
-app.post("/koders", async (req, res, ) => {
-  const objetoKoder = req.body // objeto de JS
-
-  const newKoder = new Koder(objetoKoder) // Instancia de modelo koder
-
-  await Koder.create(newKoder)
-
-  res.statusCode = 201
-  res.json(newKoder)
-})
-
-app.get("/koders", async (req, res) => {
-  const koders = await Koder.find({});
-
-  res.json(koders);
-});
-
-app.get(
-  "/",
-  (req, res, next) => {
-    console.log("EN middleware de endpoint");
-    res.statusCode = 205;
-
-    next();
-  },
-  async (req, res) => {
-    res.json({ hola: "mundo" });
-  }
-);
 
 // Ejecutamos server y conectamos BD
 mongoose
